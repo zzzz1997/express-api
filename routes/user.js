@@ -83,7 +83,7 @@ router.get('/:id', function (req, res) {
             const id = req.params.id;
             userDAO.get(id, function (success, user) {
                 if (success) {
-                    res.json(result.createResult(true, user));
+                    res.json(result.createResult(user));
                 } else {
                     res.json(result.createFail('获取用户失败'));
                 }
@@ -98,8 +98,12 @@ router.get('/:id', function (req, res) {
 router.get('/', function (req, res) {
     token.check(req, function (code) {
         if (code === 1) {
-            userDAO.list(function (users) {
-                res.json(result.createResult(true, users));
+            userDAO.list(function (success, users) {
+                if (success) {
+                    res.json(result.createResult(users));
+                } else {
+                    res.json(result.createFail('获取数据失败'));
+                }
             });
         } else {
             res.json(result.createFail('无权限'));
