@@ -1,0 +1,136 @@
+<!doctype html>
+<html ng-app="article">
+
+<head>
+    <title>zzblog后台管理系统</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/favicon.png" media="screen"/>
+    <link rel="stylesheet" href="../sources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="../sources/js/jquery.min.js"></script>
+    <script src="../sources/js/popper.min.js"></script>
+    <script src="../sources/js/bootstrap.min.js"></script>
+    <script src="../sources/js/angular.min.js"></script>
+    <script src="../javascripts/article.js"></script>
+</head>
+
+<body  ng-controller="articleCtrl">
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-sm bg-info navbar-dark">
+    <a class="navbar-brand" href="#">
+        <img class="logo" src="../images/zzblog.png" alt="logo">
+        欢迎管理员{{admin}}！
+    </a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#" ng-click="doExit()">退出</a>
+        </li>
+    </ul>
+</nav>
+<form>
+    <div class="form-group">
+        <label for="select">选择管理的数据表</label>
+        <select class="form-control" id="select">
+            <option href="/user.html">user</option>
+            <option>article</option>
+        </select>
+    </div>
+</form>
+<div class="container">
+    <p>用户密码已隐藏</p>
+    <a href="javascript:void(0)" data-toggle="modal" data-target="#addModal">新建</a>
+    <!-- 用户数据表 -->
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>description</th>
+            <th>url</th>
+            <th>authorId</th>
+            <th>authorIcon</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--tr ng-repeat="user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.icon}}</td>
+            <td>{{user.isAdmin}}</td>
+            <td>{{user.createdAt}}</td>
+            <td><a href="javascript:void(0)" ng-click="">编辑</a>  <a href="javascript:void(0)" data-toggle="modal" data-target="#delModal" data-user="{{user}}">删除</a></td>
+        </tr-->
+        </tbody>
+    </table>
+    <!-- 添加信息模态框 -->
+    <div class="modal fade" id="addModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title">新建文章</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    <!--form>
+                        <div class="form-group">
+                            <label for="add-name">用户名：</label>
+                            <input type="text" class="form-control" id="add-name" placeholder="请输入用户名" value="zzzz">
+                        </div>
+                        <div class="form-group">
+                            <label for="add-pwd">密码：</label>
+                            <input type="password" class="form-control" id="add-pwd" placeholder="请输入密码" value="123456">
+                        </div>
+                    </form-->
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="doAdd()">新建</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除信息模态框 -->
+    <div class="modal fade" id="delModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- 模态框头部 -->
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- 模态框主体 -->
+                <div class="modal-body">
+                    确认删除id为<a id="user-id"></a>的文章吗？
+                </div>
+
+                <!-- 模态框底部 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="doDel()">删除</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#delModal').on('show.bs.modal', function (event) {
+            /*const user = $(event.relatedTarget).data('user');
+            const modal = $(event.currentTarget);
+            modal.find('.modal-title').text('删除' + user.username);
+            modal.find('.modal-body a').text(user.id);*/
+        });
+    </script>
+</div>
+</body>
+
+</html>

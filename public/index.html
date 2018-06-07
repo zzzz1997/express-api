@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>zzblog后台管理系统</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.png" media="screen"/>
+    <!-- 响应式配置 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./sources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <script src="./sources/js/jquery.min.js"></script>
+    <script src="./sources/js/popper.min.js"></script>
+    <script src="./sources/js/bootstrap.min.js"></script>
+    <script src="./sources/js/angular.min.js"></script>
+    <script src="./javascripts/index.js"></script>
+</head>
+
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-sm bg-info navbar-dark">
+    <a class="navbar-brand" href="#">
+        <img class="logo" src="./images/zzblog.png" alt="logo">
+        zzblog后台管理系统
+    </a>
+</nav>
+<div class="container">
+    <h2>使用前请登录</h2>
+    <!-- 登录表单，绑定操作 -->
+    <form ng-app="index" ng-controller="loginCtrl">
+        <div class="form-group">
+            <label for="name">用户名：</label>
+            <input type="text" class="form-control" id="name" placeholder="请输入用户名" value="zzzz">
+        </div>
+        <div class="form-group">
+            <label for="pwd">密码：</label>
+            <input type="password" class="form-control" id="pwd" placeholder="请输入密码" value="123456">
+        </div>
+        <button type="button" class="btn btn-primary" ng-click="login()">登录</button>
+    </form>
+</div>
+</body>
+
+</html>
