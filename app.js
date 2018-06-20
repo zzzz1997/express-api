@@ -6,6 +6,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const articleRouter = require('./routes/article');
+const commentRouter = require('./routes/comment');
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.all('*', function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/article', articleRouter);
+app.use('/comment', commentRouter);
 
 module.exports = app;
