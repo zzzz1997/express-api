@@ -13,5 +13,15 @@ module.exports = {
                 callback(true, result);
             }
         })
+    },
+    publish: function (authorId, articleId, content, createdAt, callback) {
+        pool.query(commentSqlMap.publish, [authorId, articleId, content, createdAt], function (error, result) {
+            if (error) {
+                console.error(error);
+                callback(false);
+            } else {
+                callback(true);
+            }
+        })
     }
 };

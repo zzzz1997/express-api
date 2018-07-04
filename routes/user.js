@@ -7,7 +7,7 @@ const result = require('../utils/result');
 const token = require('../utils/token');
 
 // 设置token过期时间
-const TIMEOUT = 10 * 60 * 1000;
+const TIMEOUT = 24 * 60 * 60 * 1000;
 
 // 注册一条数据（权限：所有）
 router.post('/register', multiparty, function (req, res) {
@@ -44,18 +44,20 @@ router.post('/login', multiparty, function (req, res) {
 
 // 更新数据（权限：管理）
 router.put('/', multiparty, function (req, res) {
-    if (code === 1) {
-        const user = req.body;
-        userDAO.update(user, function (success) {
-            if (success) {
-                res.json(result.createResult());
-            } else {
-                res.json(result.createFail('更新失败'));
-            }
-        })
-    } else {
-        res.json(result.createFail('无权限'));
-    }
+    token.check(req, function (code) {
+        if (code === 1) {
+            const user = req.body;
+            userDAO.update(user, function (success) {
+                if (success) {
+                    res.json(result.createResult());
+                } else {
+                    res.json(result.createFail('更新失败'));
+                }
+            })
+        } else {
+            res.json(result.createFail('无权限'));
+        }
+    })
 });
 
 // 删除数据（权限：管理）
