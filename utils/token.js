@@ -40,11 +40,7 @@ const token = {
             if (decoded.exp <= Date.now() || decoded.aud !== 'zzzz') {
                 return -2;
             } else {
-                if (decoded.isAdmin === 0) {
-                    return 0;
-                } else {
-                    return 1;
-                }
+                return decoded.isAdmin;
             }
         } catch (e) {
             return -1

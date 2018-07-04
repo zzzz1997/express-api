@@ -7,6 +7,7 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 const articleRouter = require('./routes/article');
 const commentRouter = require('./routes/comment');
+const fileRouter = require('./routes/file');
 
 const app = express();
 
@@ -30,5 +31,6 @@ app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/article', articleRouter);
 app.use('/comment', commentRouter);
+app.use('/file', fileRouter);
 
 module.exports = app;
